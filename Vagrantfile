@@ -1,19 +1,13 @@
-Vagrant.configure("2") do |config|
-	 config.vm.define "box1" do |box1|
+#!/bin/bash
+#Script to update user password
 
-         box1.vm.box="ubuntu/trusty64"
-
-         box1.vm.network :forwarded_port, guest: 22, host: 10122, id: "ssh"
-
- end
-
-  config.vm.define "box2" do |box2|
-
-         box2.vm.box="scotch/box"
-
-         box2.vm.network :forwarded_port, guest: 22, host: 10222, id: "ssh"
- end
-end
-
-#This is another edit! Mwahahaha!!!
-#This is Svetlana's change!
+if [$id -u) -eq 1]; then
+	read -p "Enter username: " username
+	egrep "^$nameuser" /etc/passwd>/dev/null
+	if [ $? -eq 0 ]; then
+		passwd $username
+		echo "Password updated successfully!"
+		exit 1
+	else
+		echo "User does not exist!"
+		fi 
